@@ -34,103 +34,183 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-oxford-blue to-rich-black text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Find Your Next <span className="text-ut-orange">Opportunity</span>
-            </h1>
-            <p className="text-xl md:text-2xl mb-8 text-gray-300">
-              Discover jobs across Bangladesh or offer your skills as freelance tasks
-            </p>
-            
-            {/* Search Box */}
-            <div className="max-w-3xl mx-auto mb-8">
-              <form onSubmit={handleSearch} className="bg-white rounded-lg p-2 shadow-lg">
-                <div className="flex flex-col md:flex-row gap-2">
-                  <div className="flex-1 flex items-center">
-                    <Search className="h-5 w-5 text-gray-400 ml-3 mr-2" />
-                    <Input
-                      type="text"
-                      placeholder="Search jobs, tasks, skills, or companies..."
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                      className="border-0 focus:ring-0 text-lg placeholder:text-gray-400"
-                    />
-                  </div>
-                  <div className="flex gap-2">
-                    <div className="flex bg-gray-100 rounded-md">
-                      <button
-                        type="button"
-                        onClick={() => setSearchType("jobs")}
-                        className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                          searchType === "jobs"
-                            ? "bg-oxford-blue text-white"
-                            : "text-gray-600 hover:text-gray-900"
-                        }`}
-                      >
-                        Jobs
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setSearchType("tasks")}
-                        className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                          searchType === "tasks"
-                            ? "bg-oxford-blue text-white"
-                            : "text-gray-600 hover:text-gray-900"
-                        }`}
-                      >
-                        Tasks
-                      </button>
-                    </div>
-                    <Button 
-                      type="submit"
-                      className="bg-ut-orange hover:bg-orange-600 text-white px-6 py-2 rounded-md font-semibold"
-                    >
-                      Search
-                    </Button>
-                  </div>
-                </div>
-              </form>
+    <div className="min-h-screen bg-white">
+      {/* Hero Section - Modern Split Design */}
+      <section className="relative min-h-screen flex items-center overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 bg-gradient-to-br from-oxford-blue via-rich-black to-oxford-blue"></div>
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-ut-orange/10 to-transparent"></div>
+        
+        {/* Animated Background Shapes */}
+        <div className="absolute top-20 left-10 w-32 h-32 bg-ut-orange/20 rounded-full blur-xl animate-pulse"></div>
+        <div className="absolute bottom-32 right-20 w-48 h-48 bg-ut-orange/10 rounded-full blur-2xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-white/5 rounded-full blur-lg animate-pulse delay-500"></div>
+        
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
+          {/* Left Column - Content */}
+          <div className="text-white space-y-8">
+            <div className="space-y-6">
+              <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
+                Your <span className="text-ut-orange">Career</span><br />
+                Starts <span className="bg-gradient-to-r from-ut-orange to-orange-400 bg-clip-text text-transparent">Here</span>
+              </h1>
+              <p className="text-xl lg:text-2xl text-gray-300 leading-relaxed">
+                Bangladesh's premier platform connecting talent with opportunities through jobs and freelance services
+              </p>
             </div>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            {/* Quick Stats */}
+            <div className="grid grid-cols-3 gap-6 py-6">
+              <div className="text-center">
+                <div className="text-3xl lg:text-4xl font-bold text-ut-orange">1000+</div>
+                <div className="text-sm text-gray-400">Active Jobs</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl lg:text-4xl font-bold text-ut-orange">500+</div>
+                <div className="text-sm text-gray-400">Freelancers</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl lg:text-4xl font-bold text-ut-orange">50+</div>
+                <div className="text-sm text-gray-400">Cities</div>
+              </div>
+            </div>
+            
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4">
               <Button 
-                className="bg-ut-orange hover:bg-orange-600 text-white px-8 py-4 rounded-lg text-lg font-semibold"
+                className="bg-ut-orange hover:bg-orange-600 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
                 onClick={() => setLocation("/jobs")}
               >
-                Browse Jobs
+                Find Jobs →
               </Button>
               <Button 
                 variant="outline"
-                className="border-2 border-ut-orange text-ut-orange hover:bg-ut-orange hover:text-white px-8 py-4 rounded-lg text-lg font-semibold"
+                className="border-2 border-white text-white hover:bg-white hover:text-oxford-blue px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300"
                 onClick={() => setLocation("/tasks")}
               >
-                Explore Tasks
+                Hire Talent
               </Button>
+            </div>
+          </div>
+          
+          {/* Right Column - Interactive Search */}
+          <div className="lg:pl-8">
+            <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-8 border border-white/20 shadow-2xl">
+              <h3 className="text-2xl font-bold text-white mb-6 text-center">Start Your Search</h3>
+              
+              <form onSubmit={handleSearch} className="space-y-6">
+                {/* Search Input */}
+                <div className="relative">
+                  <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                  <Input
+                    type="text"
+                    placeholder="Search jobs, tasks, skills..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="pl-12 pr-4 py-4 text-lg rounded-2xl border-0 bg-white/90 backdrop-blur-sm focus:bg-white focus:ring-2 focus:ring-ut-orange transition-all duration-300"
+                  />
+                </div>
+                
+                {/* Search Type Toggle */}
+                <div className="flex bg-white/20 backdrop-blur-sm rounded-2xl p-1">
+                  <button
+                    type="button"
+                    onClick={() => setSearchType("jobs")}
+                    className={`flex-1 py-3 px-4 rounded-xl text-sm font-medium transition-all duration-300 ${
+                      searchType === "jobs"
+                        ? "bg-ut-orange text-white shadow-lg"
+                        : "text-white/80 hover:text-white"
+                    }`}
+                  >
+                    Jobs
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setSearchType("tasks")}
+                    className={`flex-1 py-3 px-4 rounded-xl text-sm font-medium transition-all duration-300 ${
+                      searchType === "tasks"
+                        ? "bg-ut-orange text-white shadow-lg"
+                        : "text-white/80 hover:text-white"
+                    }`}
+                  >
+                    Tasks
+                  </button>
+                </div>
+                
+                {/* Search Button */}
+                <Button 
+                  type="submit"
+                  className="w-full bg-ut-orange hover:bg-orange-600 text-white py-4 rounded-2xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                >
+                  Search Now
+                </Button>
+              </form>
+              
+              {/* Popular Searches */}
+              <div className="mt-6 pt-6 border-t border-white/20">
+                <p className="text-white/60 text-sm mb-3">Popular searches:</p>
+                <div className="flex flex-wrap gap-2">
+                  {["Web Developer", "Logo Design", "Marketing", "Data Entry"].map((term) => (
+                    <button
+                      key={term}
+                      onClick={() => {
+                        setSearchTerm(term);
+                        handleSearch({ preventDefault: () => {} } as any);
+                      }}
+                      className="px-3 py-1 bg-white/10 hover:bg-white/20 text-white/80 text-sm rounded-full transition-all duration-300"
+                    >
+                      {term}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/60">
+          <div className="animate-bounce">
+            <div className="w-6 h-10 border-2 border-white/40 rounded-full flex justify-center">
+              <div className="w-1 h-3 bg-white/60 rounded-full mt-2 animate-pulse"></div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-16 bg-white">
+      {/* Category Cards Section */}
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div>
-              <h3 className="text-4xl font-bold text-oxford-blue mb-2">1000+</h3>
-              <p className="text-text-secondary text-lg">Active Jobs</p>
-            </div>
-            <div>
-              <h3 className="text-4xl font-bold text-oxford-blue mb-2">500+</h3>
-              <p className="text-text-secondary text-lg">Freelance Tasks</p>
-            </div>
-            <div>
-              <h3 className="text-4xl font-bold text-oxford-blue mb-2">5000+</h3>
-              <p className="text-text-secondary text-lg">Happy Users</p>
-            </div>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl lg:text-5xl font-bold text-rich-black mb-6">
+              Explore by <span className="text-ut-orange">Category</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Discover opportunities across diverse industries in Bangladesh
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+            {[
+              { name: "Technology", icon: "💻", jobs: 250 },
+              { name: "Design", icon: "🎨", jobs: 180 },
+              { name: "Marketing", icon: "📈", jobs: 150 },
+              { name: "Business", icon: "💼", jobs: 200 },
+              { name: "Writing", icon: "✍️", jobs: 120 },
+              { name: "Sales", icon: "🤝", jobs: 160 }
+            ].map((category, index) => (
+              <div key={index} className="group cursor-pointer">
+                <div className="bg-gradient-to-br from-gray-50 to-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-gray-100 hover:border-ut-orange/30">
+                  <div className="text-center">
+                    <div className="text-4xl mb-4 group-hover:scale-125 transition-transform duration-300">
+                      {category.icon}
+                    </div>
+                    <h3 className="font-bold text-rich-black mb-2 text-sm lg:text-base">{category.name}</h3>
+                    <p className="text-gray-500 text-xs lg:text-sm">{category.jobs}+ Jobs</p>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -193,60 +273,79 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Jobs */}
-      <section className="py-16 bg-white">
+      {/* Featured Jobs - Modern Design */}
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-rich-black mb-4">
-              Featured Jobs
-            </h2>
-            <p className="text-lg text-text-secondary">
-              Discover the latest job opportunities across Bangladesh
-            </p>
+          <div className="flex justify-between items-center mb-16">
+            <div>
+              <h2 className="text-4xl lg:text-5xl font-bold text-rich-black mb-4">
+                Latest <span className="text-ut-orange">Jobs</span>
+              </h2>
+              <p className="text-xl text-gray-600">
+                Handpicked opportunities from top companies in Bangladesh
+              </p>
+            </div>
+            <Button 
+              onClick={() => setLocation("/jobs")}
+              className="hidden lg:flex bg-oxford-blue hover:bg-blue-800 text-white px-8 py-4 rounded-2xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+            >
+              View All Jobs →
+            </Button>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-            {featuredJobs.map((job: any) => (
-              <Card key={job.id} className="hover:shadow-lg transition-shadow duration-200">
-                <CardContent className="p-6">
-                  <div className="flex items-start justify-between mb-4">
-                    <div>
-                      <h3 className="text-lg font-semibold text-rich-black mb-1">{job.title}</h3>
-                      <p className="text-text-secondary">{job.company}</p>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {featuredJobs.map((job: any, index: number) => (
+              <div key={job.id} className="group cursor-pointer">
+                <div className="bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 relative overflow-hidden">
+                  {/* Background Pattern */}
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-ut-orange/10 to-transparent rounded-bl-full"></div>
+                  
+                  <div className="relative z-10">
+                    <div className="flex items-start justify-between mb-6">
+                      <div className="flex-1">
+                        <Badge className={`mb-3 ${index % 2 === 0 ? 'bg-oxford-blue text-white' : 'bg-ut-orange text-white'}`}>
+                          {job.type}
+                        </Badge>
+                        <h3 className="text-xl font-bold text-rich-black mb-2 group-hover:text-ut-orange transition-colors duration-300">
+                          {job.title}
+                        </h3>
+                        <p className="text-gray-600 font-medium">{job.company}</p>
+                      </div>
                     </div>
-                    <Badge className="bg-green-100 text-green-800">{job.type}</Badge>
+                    
+                    <div className="space-y-3 mb-6">
+                      <div className="flex items-center text-gray-600">
+                        <MapPin className="h-5 w-5 mr-3 text-ut-orange" />
+                        <span>{job.location}</span>
+                      </div>
+                      <div className="flex items-center text-gray-600">
+                        <DollarSign className="h-5 w-5 mr-3 text-ut-orange" />
+                        <span className="font-semibold">{job.salary}</span>
+                      </div>
+                    </div>
+                    
+                    <p className="text-gray-700 line-clamp-3 mb-6 leading-relaxed">
+                      {job.description}
+                    </p>
+                    
+                    <Button 
+                      className="w-full bg-gradient-to-r from-ut-orange to-orange-500 hover:from-orange-600 hover:to-orange-700 text-white py-4 rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform group-hover:scale-105"
+                      onClick={() => setLocation("/jobs")}
+                    >
+                      Apply Now
+                    </Button>
                   </div>
-                  
-                  <div className="space-y-2 mb-4">
-                    <div className="flex items-center text-text-secondary text-sm">
-                      <MapPin className="h-4 w-4 mr-2" />
-                      {job.location}
-                    </div>
-                    <div className="flex items-center text-text-secondary text-sm">
-                      <DollarSign className="h-4 w-4 mr-2" />
-                      {job.salary}
-                    </div>
-                  </div>
-                  
-                  <p className="text-gray-700 text-sm line-clamp-2 mb-4">{job.description}</p>
-                  
-                  <Button 
-                    className="w-full bg-ut-orange hover:bg-orange-600 text-white"
-                    onClick={() => setLocation("/jobs")}
-                  >
-                    View Details
-                  </Button>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             ))}
           </div>
           
-          <div className="text-center">
+          <div className="text-center mt-12 lg:hidden">
             <Button 
               onClick={() => setLocation("/jobs")}
-              className="bg-oxford-blue hover:bg-blue-800 text-white px-8 py-3 rounded-lg font-semibold"
+              className="bg-oxford-blue hover:bg-blue-800 text-white px-8 py-4 rounded-2xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300"
             >
-              View All Jobs
+              View All Jobs →
             </Button>
           </div>
         </div>
