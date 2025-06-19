@@ -446,75 +446,185 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Why Choose KajBD */}
-      <section className="py-16 bg-gradient-to-br from-oxford-blue to-rich-black text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose KajBD?</h2>
-            <p className="text-xl text-gray-300">The trusted platform for Bangladesh's workforce</p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="bg-ut-orange rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                <MapPin className="h-8 w-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold mb-2">Local Focus</h3>
-              <p className="text-gray-300">
-                Tailored specifically for Bangladesh with city-based job filtering from Dhaka to Chittagong
-              </p>
+      {/* Interactive Success Metrics & Value Proposition */}
+      <section className="py-24 bg-white relative overflow-hidden">
+        {/* Background Decorative Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-0 left-0 w-96 h-96 bg-ut-orange/5 rounded-full -translate-x-48 -translate-y-48"></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-oxford-blue/5 rounded-full translate-x-48 translate-y-48"></div>
+          <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-r from-ut-orange/10 to-oxford-blue/10 rounded-full transform -translate-x-1/2 -translate-y-1/2"></div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* Main Heading */}
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center bg-gradient-to-r from-ut-orange to-orange-500 text-white px-6 py-2 rounded-full text-sm font-semibold mb-6">
+              🇧🇩 Made for Bangladesh
             </div>
-            
-            <div className="text-center">
-              <div className="bg-ut-orange rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                <Star className="h-8 w-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold mb-2">Quality First</h3>
-              <p className="text-gray-300">
-                Verified employers and skilled freelancers ensure high-quality opportunities and services
-              </p>
-            </div>
-            
-            <div className="text-center">
-              <div className="bg-ut-orange rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                <DollarSign className="h-8 w-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold mb-2">Fair Pricing</h3>
-              <p className="text-gray-300">
-                Transparent pricing in Taka with no hidden fees. Pay only when you're satisfied
-              </p>
-            </div>
-            
-            <div className="text-center">
-              <div className="bg-ut-orange rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                <Clock className="h-8 w-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold mb-2">Quick Delivery</h3>
-              <p className="text-gray-300">
-                Fast hiring process for jobs and quick turnaround times for freelance tasks
-              </p>
-            </div>
-          </div>
-          
-          <div className="mt-16 bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-8 text-center">
-            <h3 className="text-2xl font-bold mb-4">Ready to Get Started?</h3>
-            <p className="text-xl text-gray-300 mb-6">
-              Join thousands of professionals already using KajBD to advance their careers
+            <h2 className="text-5xl lg:text-6xl font-bold text-rich-black mb-6">
+              Why Choose <span className="text-transparent bg-gradient-to-r from-oxford-blue to-ut-orange bg-clip-text">KajBD</span>?
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Bangladesh's most trusted employment platform connecting talent with opportunities through innovative job matching and freelance marketplace
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                className="bg-ut-orange hover:bg-orange-600 text-white px-8 py-3 rounded-lg font-semibold"
-                onClick={() => setLocation("/auth")}
-              >
-                Sign Up as Job Seeker
-              </Button>
-              <Button 
-                variant="outline"
-                className="border-2 border-white text-white hover:bg-white hover:text-oxford-blue px-8 py-3 rounded-lg font-semibold"
-                onClick={() => setLocation("/auth")}
-              >
-                Sign Up as Freelancer
-              </Button>
+          </div>
+
+          {/* Interactive Stats Grid */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
+            {[
+              { number: "5000+", label: "Active Users", icon: "👥", color: "from-oxford-blue to-blue-600" },
+              { number: "1200+", label: "Job Postings", icon: "💼", color: "from-ut-orange to-orange-600" },
+              { number: "800+", label: "Freelance Tasks", icon: "🎯", color: "from-purple-500 to-purple-600" },
+              { number: "50+", label: "Cities Covered", icon: "🏙️", color: "from-green-500 to-green-600" }
+            ].map((stat, index) => (
+              <div key={index} className="group cursor-pointer">
+                <div className="bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-gray-100 hover:border-ut-orange/30 relative overflow-hidden">
+                  {/* Background Gradient */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}></div>
+                  
+                  <div className="relative z-10 text-center">
+                    <div className="text-4xl mb-4 transform group-hover:scale-125 transition-transform duration-300">
+                      {stat.icon}
+                    </div>
+                    <div className="text-3xl lg:text-4xl font-bold text-rich-black mb-2 group-hover:text-ut-orange transition-colors duration-300">
+                      {stat.number}
+                    </div>
+                    <div className="text-gray-600 font-medium">
+                      {stat.label}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Innovative Feature Cards */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-20">
+            {/* Card 1 - Local Focus */}
+            <div className="group cursor-pointer">
+              <div className="bg-gradient-to-br from-oxford-blue to-blue-800 rounded-3xl p-8 text-white shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16"></div>
+                <div className="absolute bottom-0 left-0 w-24 h-24 bg-ut-orange/20 rounded-full translate-y-12 -translate-x-12"></div>
+                
+                <div className="relative z-10">
+                  <div className="flex items-center mb-6">
+                    <div className="bg-ut-orange rounded-2xl p-4 mr-4">
+                      <MapPin className="h-8 w-8 text-white" />
+                    </div>
+                    <h3 className="text-2xl font-bold">Local Excellence</h3>
+                  </div>
+                  <p className="text-blue-100 text-lg leading-relaxed mb-6">
+                    Tailored specifically for Bangladesh with smart city-based filtering from Dhaka to Chittagong, ensuring you find opportunities in your preferred location.
+                  </p>
+                  <div className="flex items-center text-ut-orange font-semibold">
+                    <span>Explore Local Jobs</span>
+                    <div className="ml-2 transform group-hover:translate-x-2 transition-transform duration-300">→</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 2 - Quality & Trust */}
+            <div className="group cursor-pointer">
+              <div className="bg-gradient-to-br from-ut-orange to-orange-600 rounded-3xl p-8 text-white shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16"></div>
+                <div className="absolute bottom-0 left-0 w-24 h-24 bg-oxford-blue/20 rounded-full translate-y-12 -translate-x-12"></div>
+                
+                <div className="relative z-10">
+                  <div className="flex items-center mb-6">
+                    <div className="bg-oxford-blue rounded-2xl p-4 mr-4">
+                      <Star className="h-8 w-8 text-white" />
+                    </div>
+                    <h3 className="text-2xl font-bold">Quality Assured</h3>
+                  </div>
+                  <p className="text-orange-100 text-lg leading-relaxed mb-6">
+                    Verified employers and skilled freelancers undergo rigorous screening to ensure high-quality opportunities and professional service delivery.
+                  </p>
+                  <div className="flex items-center text-oxford-blue font-semibold">
+                    <span>View Success Stories</span>
+                    <div className="ml-2 transform group-hover:translate-x-2 transition-transform duration-300">→</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 3 - Smart Technology */}
+            <div className="group cursor-pointer">
+              <div className="bg-gradient-to-br from-rich-black to-gray-800 rounded-3xl p-8 text-white shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-ut-orange/10 rounded-full -translate-y-16 translate-x-16"></div>
+                <div className="absolute bottom-0 left-0 w-24 h-24 bg-oxford-blue/20 rounded-full translate-y-12 -translate-x-12"></div>
+                
+                <div className="relative z-10">
+                  <div className="flex items-center mb-6">
+                    <div className="bg-gradient-to-r from-ut-orange to-oxford-blue rounded-2xl p-4 mr-4">
+                      <Clock className="h-8 w-8 text-white" />
+                    </div>
+                    <h3 className="text-2xl font-bold">Smart Matching</h3>
+                  </div>
+                  <p className="text-gray-300 text-lg leading-relaxed mb-6">
+                    Advanced algorithms match skills with opportunities, ensuring faster hiring processes and optimal project-freelancer combinations.
+                  </p>
+                  <div className="flex items-center text-ut-orange font-semibold">
+                    <span>See How It Works</span>
+                    <div className="ml-2 transform group-hover:translate-x-2 transition-transform duration-300">→</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Call to Action with Dual Path */}
+          <div className="relative">
+            <div className="bg-gradient-to-r from-oxford-blue via-rich-black to-oxford-blue rounded-3xl p-12 lg:p-16 text-white relative overflow-hidden">
+              {/* Background Pattern */}
+              <div className="absolute inset-0 opacity-10">
+                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-ut-orange/20 to-transparent"></div>
+                <div className="absolute bottom-0 right-0 w-96 h-96 bg-ut-orange/10 rounded-full translate-x-48 translate-y-48"></div>
+              </div>
+              
+              <div className="relative z-10 text-center">
+                <h3 className="text-4xl lg:text-5xl font-bold mb-6">
+                  Ready to <span className="text-ut-orange">Transform</span> Your Career?
+                </h3>
+                <p className="text-xl text-blue-100 mb-12 max-w-3xl mx-auto leading-relaxed">
+                  Join thousands of professionals who have found their dream jobs and ideal clients through KajBD's innovative platform
+                </p>
+                
+                {/* Dual CTA Buttons */}
+                <div className="flex flex-col lg:flex-row gap-6 justify-center items-center">
+                  <div className="group cursor-pointer">
+                    <Button 
+                      className="bg-ut-orange hover:bg-orange-600 text-white px-10 py-6 rounded-2xl font-bold text-lg shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 flex items-center"
+                      onClick={() => setLocation("/auth")}
+                    >
+                      <div className="mr-3 text-2xl">🔍</div>
+                      <div>
+                        <div className="text-lg font-bold">Find Your Dream Job</div>
+                        <div className="text-sm opacity-90">Join as Job Seeker</div>
+                      </div>
+                    </Button>
+                  </div>
+                  
+                  <div className="text-blue-200 font-semibold text-lg">OR</div>
+                  
+                  <div className="group cursor-pointer">
+                    <Button 
+                      className="bg-white hover:bg-gray-100 text-oxford-blue px-10 py-6 rounded-2xl font-bold text-lg shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105 flex items-center"
+                      onClick={() => setLocation("/auth")}
+                    >
+                      <div className="mr-3 text-2xl">💼</div>
+                      <div>
+                        <div className="text-lg font-bold">Offer Your Skills</div>
+                        <div className="text-sm opacity-70">Join as Freelancer</div>
+                      </div>
+                    </Button>
+                  </div>
+                </div>
+                
+                <div className="mt-8 text-blue-200 text-sm">
+                  ✨ Free to join • No setup fees • Start earning today
+                </div>
+              </div>
             </div>
           </div>
         </div>
