@@ -61,6 +61,10 @@ export default {
           border: "var(--sidebar-border)",
           ring: "var(--sidebar-ring)",
         },
+        "oxford-blue": "var(--oxford-blue)",
+        "rich-black": "var(--rich-black)",
+        "ut-orange": "var(--ut-orange)",
+        "text-secondary": "var(--text-secondary)",
       },
       keyframes: {
         "accordion-down": {

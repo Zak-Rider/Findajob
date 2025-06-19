@@ -1,9 +1,25 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useLocation } from "wouter";
+import { useQuery } from "@tanstack/react-query";
+import { Badge } from "@/components/ui/badge";
+import { MapPin, DollarSign, Clock, Star } from "lucide-react";
 
 export default function Home() {
   const [, setLocation] = useLocation();
+
+  // Fetch featured jobs and tasks
+  const { data: jobs = [] } = useQuery({
+    queryKey: ["/api/jobs"],
+  });
+
+  const { data: tasks = [] } = useQuery({
+    queryKey: ["/api/tasks"],
+  });
+
+  // Get first 3 jobs and tasks for featured sections
+  const featuredJobs = (jobs as any[]).slice(0, 3);
+  const featuredTasks = (tasks as any[]).slice(0, 3);
 
   return (
     <div className="min-h-screen">
@@ -110,6 +126,139 @@ export default function Home() {
                 </p>
               </CardContent>
             </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Jobs */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-rich-black mb-4">
+              Featured Jobs
+            </h2>
+            <p className="text-lg text-text-secondary">
+              Discover the latest job opportunities across Bangladesh
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            {featuredJobs.map((job: any) => (
+              <Card key={job.id} className="hover:shadow-lg transition-shadow duration-200">
+                <CardContent className="p-6">
+                  <div className="flex items-start justify-between mb-4">
+                    <div>
+                      <h3 className="text-lg font-semibold text-rich-black mb-1">{job.title}</h3>
+                      <p className="text-text-secondary">{job.company}</p>
+                    </div>
+                    <Badge className="bg-green-100 text-green-800">{job.type}</Badge>
+                  </div>
+                  
+                  <div className="space-y-2 mb-4">
+                    <div className="flex items-center text-text-secondary text-sm">
+                      <MapPin className="h-4 w-4 mr-2" />
+                      {job.location}
+                    </div>
+                    <div className="flex items-center text-text-secondary text-sm">
+                      <DollarSign className="h-4 w-4 mr-2" />
+                      {job.salary}
+                    </div>
+                  </div>
+                  
+                  <p className="text-gray-700 text-sm line-clamp-2 mb-4">{job.description}</p>
+                  
+                  <Button 
+                    className="w-full bg-ut-orange hover:bg-orange-600 text-white"
+                    onClick={() => setLocation("/jobs")}
+                  >
+                    View Details
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+          
+          <div className="text-center">
+            <Button 
+              onClick={() => setLocation("/jobs")}
+              className="bg-oxford-blue hover:bg-blue-800 text-white px-8 py-3 rounded-lg font-semibold"
+            >
+              View All Jobs
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Tasks */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-rich-black mb-4">
+              Popular Tasks
+            </h2>
+            <p className="text-lg text-text-secondary">
+              Find skilled freelancers for your projects
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            {featuredTasks.map((task: any) => (
+              <Card key={task.id} className="hover:shadow-lg transition-shadow duration-200 overflow-hidden">
+                <div className="aspect-video bg-gradient-to-br from-oxford-blue to-rich-black flex items-center justify-center">
+                  <div className="text-white text-center">
+                    <div className="text-4xl mb-2">🎨</div>
+                    <div className="text-sm opacity-80">{task.category}</div>
+                  </div>
+                </div>
+                
+                <CardContent className="p-6">
+                  <h3 className="text-lg font-semibold text-rich-black mb-2 line-clamp-2">
+                    {task.title}
+                  </h3>
+                  
+                  <p className="text-text-secondary text-sm mb-4 line-clamp-2">
+                    {task.description}
+                  </p>
+                  
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-ut-orange font-bold text-lg">
+                      From ৳{task.price.toLocaleString()}
+                    </span>
+                    <span className="text-sm text-text-secondary flex items-center">
+                      <Clock className="h-4 w-4 mr-1" />
+                      {task.deliveryTime} days
+                    </span>
+                  </div>
+                  
+                  <div className="flex items-center mb-4">
+                    <div className="flex items-center mr-2">
+                      <Star className="h-4 w-4 text-yellow-500 fill-current" />
+                      <Star className="h-4 w-4 text-yellow-500 fill-current" />
+                      <Star className="h-4 w-4 text-yellow-500 fill-current" />
+                      <Star className="h-4 w-4 text-yellow-500 fill-current" />
+                      <Star className="h-4 w-4 text-yellow-500 fill-current" />
+                    </div>
+                    <span className="text-sm text-text-secondary">(4.9)</span>
+                  </div>
+                  
+                  <Button 
+                    className="w-full bg-ut-orange hover:bg-orange-600 text-white"
+                    onClick={() => setLocation("/tasks")}
+                  >
+                    View Task
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+          
+          <div className="text-center">
+            <Button 
+              onClick={() => setLocation("/tasks")}
+              className="bg-oxford-blue hover:bg-blue-800 text-white px-8 py-3 rounded-lg font-semibold"
+            >
+              Explore All Tasks
+            </Button>
           </div>
         </div>
       </section>
