@@ -97,4 +97,10 @@
   .hover\:text-ut-orange:hover {
     color: var(--ut-orange);
   }
+  .bg-light-gray {
+    background-color: var(--light-gray);
+  }
+  .text-text-secondary {
+    color: var(--text-secondary);
+  }
 }

@@ -24,7 +24,7 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
 
 function Router() {
   return (
-    <div className="min-h-screen bg-light-gray">
+    <div className="min-h-screen bg-light-gray dark:bg-gray-900">
       <Navbar />
       <Switch>
         <Route path="/" component={Home} />
