@@ -351,75 +351,96 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Tasks */}
-      <section className="py-16 bg-gray-50">
+      {/* Featured Tasks - Modern Design */}
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-rich-black mb-4">
-              Popular Tasks
-            </h2>
-            <p className="text-lg text-text-secondary">
-              Find skilled freelancers for your projects
-            </p>
+          <div className="flex justify-between items-center mb-16">
+            <div>
+              <h2 className="text-4xl lg:text-5xl font-bold text-rich-black mb-4">
+                Popular <span className="text-ut-orange">Tasks</span>
+              </h2>
+              <p className="text-xl text-gray-600">
+                Discover talented freelancers for your next project
+              </p>
+            </div>
+            <Button 
+              onClick={() => setLocation("/tasks")}
+              className="hidden lg:flex bg-oxford-blue hover:bg-blue-800 text-white px-8 py-4 rounded-2xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+            >
+              Explore All Tasks →
+            </Button>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-            {featuredTasks.map((task: any) => (
-              <Card key={task.id} className="hover:shadow-lg transition-shadow duration-200 overflow-hidden">
-                <div className="aspect-video bg-gradient-to-br from-oxford-blue to-rich-black flex items-center justify-center">
-                  <div className="text-white text-center">
-                    <div className="text-4xl mb-2">🎨</div>
-                    <div className="text-sm opacity-80">{task.category}</div>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {featuredTasks.map((task: any, index: number) => (
+              <div key={task.id} className="group cursor-pointer">
+                <div className="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 overflow-hidden relative">
+                  {/* Task Category Badge */}
+                  <div className="absolute top-4 left-4 z-10">
+                    <Badge className={`${index % 2 === 0 ? 'bg-ut-orange' : 'bg-oxford-blue'} text-white`}>
+                      {task.category}
+                    </Badge>
+                  </div>
+                  
+                  {/* Task Image Placeholder */}
+                  <div className="aspect-video bg-gradient-to-br from-gray-100 to-gray-200 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-br from-ut-orange/20 to-oxford-blue/20"></div>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="text-6xl opacity-60">
+                        {index % 3 === 0 ? '🎨' : index % 3 === 1 ? '💻' : '📝'}
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="p-8">
+                    <h3 className="text-xl font-bold text-rich-black mb-3 line-clamp-2 group-hover:text-ut-orange transition-colors duration-300">
+                      {task.title}
+                    </h3>
+                    
+                    <p className="text-gray-600 text-sm mb-6 line-clamp-3 leading-relaxed">
+                      {task.description}
+                    </p>
+                    
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-ut-orange font-bold text-2xl">
+                        ৳{task.price.toLocaleString()}
+                      </span>
+                      <span className="text-sm text-gray-500 flex items-center bg-gray-100 px-3 py-1 rounded-full">
+                        <Clock className="h-4 w-4 mr-1" />
+                        {task.deliveryTime} days
+                      </span>
+                    </div>
+                    
+                    <div className="flex items-center justify-between mb-6">
+                      <div className="flex items-center">
+                        <div className="flex items-center mr-2">
+                          {[...Array(5)].map((_, i) => (
+                            <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
+                          ))}
+                        </div>
+                        <span className="text-sm text-gray-500">(4.9)</span>
+                      </div>
+                      <span className="text-sm text-gray-500">156 reviews</span>
+                    </div>
+                    
+                    <Button 
+                      className="w-full bg-gradient-to-r from-ut-orange to-orange-500 hover:from-orange-600 hover:to-orange-700 text-white py-4 rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform group-hover:scale-105"
+                      onClick={() => setLocation("/tasks")}
+                    >
+                      Order Now
+                    </Button>
                   </div>
                 </div>
-                
-                <CardContent className="p-6">
-                  <h3 className="text-lg font-semibold text-rich-black mb-2 line-clamp-2">
-                    {task.title}
-                  </h3>
-                  
-                  <p className="text-text-secondary text-sm mb-4 line-clamp-2">
-                    {task.description}
-                  </p>
-                  
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-ut-orange font-bold text-lg">
-                      From ৳{task.price.toLocaleString()}
-                    </span>
-                    <span className="text-sm text-text-secondary flex items-center">
-                      <Clock className="h-4 w-4 mr-1" />
-                      {task.deliveryTime} days
-                    </span>
-                  </div>
-                  
-                  <div className="flex items-center mb-4">
-                    <div className="flex items-center mr-2">
-                      <Star className="h-4 w-4 text-yellow-500 fill-current" />
-                      <Star className="h-4 w-4 text-yellow-500 fill-current" />
-                      <Star className="h-4 w-4 text-yellow-500 fill-current" />
-                      <Star className="h-4 w-4 text-yellow-500 fill-current" />
-                      <Star className="h-4 w-4 text-yellow-500 fill-current" />
-                    </div>
-                    <span className="text-sm text-text-secondary">(4.9)</span>
-                  </div>
-                  
-                  <Button 
-                    className="w-full bg-ut-orange hover:bg-orange-600 text-white"
-                    onClick={() => setLocation("/tasks")}
-                  >
-                    View Task
-                  </Button>
-                </CardContent>
-              </Card>
+              </div>
             ))}
           </div>
           
-          <div className="text-center">
+          <div className="text-center mt-12 lg:hidden">
             <Button 
               onClick={() => setLocation("/tasks")}
-              className="bg-oxford-blue hover:bg-blue-800 text-white px-8 py-3 rounded-lg font-semibold"
+              className="bg-oxford-blue hover:bg-blue-800 text-white px-8 py-4 rounded-2xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300"
             >
-              Explore All Tasks
+              Explore All Tasks →
             </Button>
           </div>
         </div>
