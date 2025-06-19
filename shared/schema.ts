@@ -1,4 +1,5 @@
 import { pgTable, text, serial, integer, boolean, timestamp } from "drizzle-orm/pg-core";
+import { relations } from "drizzle-orm";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -120,3 +121,69 @@ export type Order = typeof orders.$inferSelect;
 export type InsertOrder = z.infer<typeof insertOrderSchema>;
 export type Message = typeof messages.$inferSelect;
 export type InsertMessage = z.infer<typeof insertMessageSchema>;
+
+// Relations
+export const usersRelations = relations(users, ({ many }) => ({
+  jobs: many(jobs),
+  tasks: many(tasks),
+  applications: many(applications),
+  orders: many(orders),
+  sentMessages: many(messages, { relationName: "sender" }),
+  receivedMessages: many(messages, { relationName: "receiver" }),
+}));
+
+export const jobsRelations = relations(jobs, ({ one, many }) => ({
+  employer: one(users, {
+    fields: [jobs.employerId],
+    references: [users.id],
+  }),
+  applications: many(applications),
+}));
+
+export const tasksRelations = relations(tasks, ({ one, many }) => ({
+  freelancer: one(users, {
+    fields: [tasks.freelancerId],
+    references: [users.id],
+  }),
+  orders: many(orders),
+}));
+
+export const applicationsRelations = relations(applications, ({ one }) => ({
+  job: one(jobs, {
+    fields: [applications.jobId],
+    references: [jobs.id],
+  }),
+  applicant: one(users, {
+    fields: [applications.applicantId],
+    references: [users.id],
+  }),
+}));
+
+export const ordersRelations = relations(orders, ({ one, many }) => ({
+  task: one(tasks, {
+    fields: [orders.taskId],
+    references: [tasks.id],
+  }),
+  buyer: one(users, {
+    fields: [orders.buyerId],
+    references: [users.id],
+  }),
+  messages: many(messages),
+}));
+
+export const messagesRelations = relations(messages, ({ one }) => ({
+  sender: one(users, {
+    fields: [messages.senderId],
+    references: [users.id],
+    relationName: "sender",
+  }),
+  receiver: one(users, {
+    fields: [messages.receiverId],
+    references: [users.id],
+    relationName: "receiver",
+  }),
+  order: one(orders, {
+    fields: [messages.orderId],
+    references: [orders.id],
+  }),
+}));
