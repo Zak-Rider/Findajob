@@ -1,12 +1,16 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import { useLocation } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { Badge } from "@/components/ui/badge";
-import { MapPin, DollarSign, Clock, Star } from "lucide-react";
+import { MapPin, DollarSign, Clock, Star, Search } from "lucide-react";
+import { useState } from "react";
 
 export default function Home() {
   const [, setLocation] = useLocation();
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchType, setSearchType] = useState("jobs");
 
   // Fetch featured jobs and tasks
   const { data: jobs = [] } = useQuery({
@@ -21,6 +25,14 @@ export default function Home() {
   const featuredJobs = (jobs as any[]).slice(0, 3);
   const featuredTasks = (tasks as any[]).slice(0, 3);
 
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchTerm.trim()) {
+      const searchParams = new URLSearchParams({ search: searchTerm.trim() });
+      setLocation(`/${searchType}?${searchParams.toString()}`);
+    }
+  };
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -33,6 +45,57 @@ export default function Home() {
             <p className="text-xl md:text-2xl mb-8 text-gray-300">
               Discover jobs across Bangladesh or offer your skills as freelance tasks
             </p>
+            
+            {/* Search Box */}
+            <div className="max-w-3xl mx-auto mb-8">
+              <form onSubmit={handleSearch} className="bg-white rounded-lg p-2 shadow-lg">
+                <div className="flex flex-col md:flex-row gap-2">
+                  <div className="flex-1 flex items-center">
+                    <Search className="h-5 w-5 text-gray-400 ml-3 mr-2" />
+                    <Input
+                      type="text"
+                      placeholder="Search jobs, tasks, skills, or companies..."
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      className="border-0 focus:ring-0 text-lg placeholder:text-gray-400"
+                    />
+                  </div>
+                  <div className="flex gap-2">
+                    <div className="flex bg-gray-100 rounded-md">
+                      <button
+                        type="button"
+                        onClick={() => setSearchType("jobs")}
+                        className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                          searchType === "jobs"
+                            ? "bg-oxford-blue text-white"
+                            : "text-gray-600 hover:text-gray-900"
+                        }`}
+                      >
+                        Jobs
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setSearchType("tasks")}
+                        className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                          searchType === "tasks"
+                            ? "bg-oxford-blue text-white"
+                            : "text-gray-600 hover:text-gray-900"
+                        }`}
+                      >
+                        Tasks
+                      </button>
+                    </div>
+                    <Button 
+                      type="submit"
+                      className="bg-ut-orange hover:bg-orange-600 text-white px-6 py-2 rounded-md font-semibold"
+                    >
+                      Search
+                    </Button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 className="bg-ut-orange hover:bg-orange-600 text-white px-8 py-4 rounded-lg text-lg font-semibold"
