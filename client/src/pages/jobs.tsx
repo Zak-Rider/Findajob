@@ -6,9 +6,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Label } from "@/components/ui/label";
 import JobCard from "@/components/job-card";
 import { Skeleton } from "@/components/ui/skeleton";
+import type { Job } from "@/../../shared/schema";
 
 const cities = [
-  { value: "", label: "All Cities" },
+  { value: "all", label: "All Cities" },
   { value: "dhaka", label: "Dhaka" },
   { value: "chittagong", label: "Chittagong" },
   { value: "sylhet", label: "Sylhet" },
@@ -18,7 +19,7 @@ const cities = [
 ];
 
 const categories = [
-  { value: "", label: "All Categories" },
+  { value: "all", label: "All Categories" },
   { value: "technology", label: "Technology" },
   { value: "finance", label: "Finance" },
   { value: "healthcare", label: "Healthcare" },
@@ -28,11 +29,15 @@ const categories = [
 
 export default function Jobs() {
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCity, setSelectedCity] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedCity, setSelectedCity] = useState("all");
+  const [selectedCategory, setSelectedCategory] = useState("all");
 
-  const { data: jobs, isLoading } = useQuery({
-    queryKey: ["/api/jobs", { city: selectedCity, category: selectedCategory, search: searchQuery }],
+  const { data: jobs, isLoading } = useQuery<Job[]>({
+    queryKey: ["/api/jobs", { 
+      city: selectedCity === "all" ? "" : selectedCity, 
+      category: selectedCategory === "all" ? "" : selectedCategory, 
+      search: searchQuery 
+    }],
   });
 
   const handleSearch = () => {
@@ -41,8 +46,8 @@ export default function Jobs() {
 
   const handleClearFilters = () => {
     setSearchQuery("");
-    setSelectedCity("");
-    setSelectedCategory("");
+    setSelectedCity("all");
+    setSelectedCategory("all");
   };
 
   return (
@@ -145,7 +150,7 @@ export default function Jobs() {
           </div>
         ) : jobs && jobs.length > 0 ? (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {jobs.map((job: any) => (
+            {jobs.map((job) => (
               <JobCard key={job.id} job={job} />
             ))}
           </div>
