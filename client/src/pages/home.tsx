@@ -326,73 +326,76 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Dashboard Preview */}
+      {/* Why Choose KajBD */}
       <section className="py-16 bg-gradient-to-br from-oxford-blue to-rich-black text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Powerful Dashboards</h2>
-            <p className="text-xl text-gray-300">Manage your jobs and tasks efficiently</p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose KajBD?</h2>
+            <p className="text-xl text-gray-300">The trusted platform for Bangladesh's workforce</p>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Job Seeker Dashboard */}
-            <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-8">
-              <h3 className="text-2xl font-bold mb-6 text-ut-orange">Job Seeker Dashboard</h3>
-              <div className="space-y-4">
-                <div className="bg-white bg-opacity-20 rounded-lg p-4">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="font-semibold">Applications Sent</span>
-                    <span className="text-ut-orange font-bold">Track Progress</span>
-                  </div>
-                  <div className="bg-white bg-opacity-30 rounded-full h-2">
-                    <div className="bg-ut-orange h-2 rounded-full w-3/4"></div>
-                  </div>
-                </div>
-                <div className="bg-white bg-opacity-20 rounded-lg p-4">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="font-semibold">Interview Schedule</span>
-                    <span className="text-ut-orange font-bold">Manage</span>
-                  </div>
-                  <div className="bg-white bg-opacity-30 rounded-full h-2">
-                    <div className="bg-ut-orange h-2 rounded-full w-1/4"></div>
-                  </div>
-                </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="text-center">
+              <div className="bg-ut-orange rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <MapPin className="h-8 w-8 text-white" />
               </div>
+              <h3 className="text-xl font-bold mb-2">Local Focus</h3>
+              <p className="text-gray-300">
+                Tailored specifically for Bangladesh with city-based job filtering from Dhaka to Chittagong
+              </p>
             </div>
-
-            {/* Freelancer Dashboard */}
-            <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-8">
-              <h3 className="text-2xl font-bold mb-6 text-ut-orange">Freelancer Dashboard</h3>
-              <div className="space-y-4">
-                <div className="bg-white bg-opacity-20 rounded-lg p-4">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="font-semibold">Active Orders</span>
-                    <span className="text-ut-orange font-bold">Manage</span>
-                  </div>
-                  <div className="bg-white bg-opacity-30 rounded-full h-2">
-                    <div className="bg-ut-orange h-2 rounded-full w-1/2"></div>
-                  </div>
-                </div>
-                <div className="bg-white bg-opacity-20 rounded-lg p-4">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="font-semibold">Monthly Earnings</span>
-                    <span className="text-ut-orange font-bold">Track Income</span>
-                  </div>
-                  <div className="bg-white bg-opacity-30 rounded-full h-2">
-                    <div className="bg-ut-orange h-2 rounded-full w-4/5"></div>
-                  </div>
-                </div>
+            
+            <div className="text-center">
+              <div className="bg-ut-orange rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <Star className="h-8 w-8 text-white" />
               </div>
+              <h3 className="text-xl font-bold mb-2">Quality First</h3>
+              <p className="text-gray-300">
+                Verified employers and skilled freelancers ensure high-quality opportunities and services
+              </p>
+            </div>
+            
+            <div className="text-center">
+              <div className="bg-ut-orange rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <DollarSign className="h-8 w-8 text-white" />
+              </div>
+              <h3 className="text-xl font-bold mb-2">Fair Pricing</h3>
+              <p className="text-gray-300">
+                Transparent pricing in Taka with no hidden fees. Pay only when you're satisfied
+              </p>
+            </div>
+            
+            <div className="text-center">
+              <div className="bg-ut-orange rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <Clock className="h-8 w-8 text-white" />
+              </div>
+              <h3 className="text-xl font-bold mb-2">Quick Delivery</h3>
+              <p className="text-gray-300">
+                Fast hiring process for jobs and quick turnaround times for freelance tasks
+              </p>
             </div>
           </div>
           
-          <div className="text-center mt-12">
-            <Button 
-              className="bg-ut-orange hover:bg-orange-600 text-white px-8 py-3 rounded-lg font-semibold"
-              onClick={() => setLocation("/dashboard")}
-            >
-              Access Dashboard
-            </Button>
+          <div className="mt-16 bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-8 text-center">
+            <h3 className="text-2xl font-bold mb-4">Ready to Get Started?</h3>
+            <p className="text-xl text-gray-300 mb-6">
+              Join thousands of professionals already using KajBD to advance their careers
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button 
+                className="bg-ut-orange hover:bg-orange-600 text-white px-8 py-3 rounded-lg font-semibold"
+                onClick={() => setLocation("/auth")}
+              >
+                Sign Up as Job Seeker
+              </Button>
+              <Button 
+                variant="outline"
+                className="border-2 border-white text-white hover:bg-white hover:text-oxford-blue px-8 py-3 rounded-lg font-semibold"
+                onClick={() => setLocation("/auth")}
+              >
+                Sign Up as Freelancer
+              </Button>
+            </div>
           </div>
         </div>
       </section>
